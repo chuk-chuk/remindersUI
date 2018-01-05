@@ -4,7 +4,7 @@ import { Table } from 'react-bootstrap';
 
 const ReminderListTable = (props) => {
     return(
-      <Table responsive hover>
+      <Table responsive striped hover>
         <thead>
     <tr>
       <th>Description</th>

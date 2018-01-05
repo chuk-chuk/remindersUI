@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import logo from '../logo.svg';
 import { FormGroup, InputGroup, Button } from 'react-bootstrap';
-import '../App.css';
+import AppCss from '../App.css';
 import ReminderListTable from './ReminderListTable';
+import Header from './Header';
 
 class App extends Component {
   constructor(props){
@@ -23,7 +24,8 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Button bsStyle="success" onClick={() => this.getReminders()}>Display all reminders</Button>
+        <Header />
+        <Button bsStyle="success" bsSize="large" onClick={() => this.getReminders()}>Display all reminders</Button>
         <ReminderListTable remindersAll={ this.state.listAll } />
       </div>
     );
