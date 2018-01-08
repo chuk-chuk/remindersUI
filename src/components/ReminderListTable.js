@@ -9,6 +9,7 @@ const ReminderListTable = (props) => {
       <th>Description</th>
       <th>Created on</th>
       <th>To be completed by</th>
+      <th>Action</th>
     </tr>
   </thead>
   <tbody>
@@ -18,6 +19,7 @@ const ReminderListTable = (props) => {
               <td>{item.text}</td>
               <td>{item.created_at}</td>
               <td>{item.expired_by}</td>
+              <td>Delete/Edit</td>
             </tr>
             )
           })}

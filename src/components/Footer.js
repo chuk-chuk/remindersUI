@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
+import Index from '../index.css'
 
 class Footer extends React.Component {
   getTodayDate(){
@@ -15,8 +16,8 @@ class Footer extends React.Component {
 
   render(){
     return(
-      <div>
-        <p>@copyright</p><span className='today_date'>{this.getTodayDate()}</span>
+      <div className='footer-main'>
+        <p>Copyright © Yulia</p><span className='today-date'>{this.getTodayDate()}</span>
       </div>
     )
   }
