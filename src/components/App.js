@@ -6,6 +6,11 @@ import Footer from './Footer';
 import NewReminderForm from './NewReminderForm';
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = { listAll: [] }
+  }
+  
   getReminders(){
     var url = "http://localhost:8080/api/reminders";
     fetch(url, {
@@ -17,10 +22,6 @@ class App extends Component {
     });
   };
 
-  constructor(props){
-    super(props);
-    this.state = { listAll: [] }
-  }
   render() {
     return (
       <div>

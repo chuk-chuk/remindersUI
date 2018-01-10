@@ -4,37 +4,35 @@ import Index from '../index.css';
 import { Button } from 'react-bootstrap';
 
 class NewReminderForm extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      text: '',
-      expired: '',
-      created: new Date()
-    };
-    this.handleTextChange = this.handleTextChange.bind(this);
-  }
 
-  handleTextChange(e){
-    console.log(this.state);
-    this.setState({ text: e.target.value });
-    var url = "http://localhost:8080/api/reminder-new";
-    fetch(url, {
-      method: "POST",
-      text: '',
-      expired: '',
-      created: ''
-    });
+  // handleTextChange(e){
+  //   var url = "http://localhost:8080/api/reminder-new";
+  //   fetch(url, {
+  //     method: "POST",
+  //     desc: '',
+  //     expired: '',
+  //     created: ''
+  //   });
+  // }
+
+createReminder(event) {
+  event.preventDefault();
+  const reminder = {
+    desc: this.desc.value,
+    expired: this.expired.value,
+    created: new Date().toISOString().slice(0,10),
   }
+  this.reminderForm.reset();
+  console.log(reminder);
+}
 
   render(){
     return(
-      <div className='new-reminder-form-main'>
-        <form>
-          <input type="text" name="text" placeholder="your text here" />
-          <input type="text" name="expired" placeholder="2018-01-05" />
-          <Button bsStyle="success" onClick={() => this.handleTextChange()}>Add New</Button>
+        <form ref={(input) => this.reminderForm = input} >
+          <textarea ref={(input) => this.desc = input} type="text" name="desc" placeholder="your text here"></textarea>
+          <input ref={(input) => this.expired = input} type="text" name="expired" placeholder="2018-01-05" />
+          <Button bsStyle="success" onClick={(e) => this.createReminder(e)}>Add New</Button>
         </form>
-      </div>
     )
   }
 }
