@@ -8,9 +8,12 @@ import NewReminderForm from './NewReminderForm';
 class App extends Component {
   constructor(props){
     super(props);
-    this.state = { listAll: [] }
+    this.addReminder = this.addReminder.bind(this);
+    this.state = {
+      listAll: [],
+    };
   }
-  
+
   getReminders(){
     var url = "http://localhost:8080/api/reminders";
     fetch(url, {
@@ -20,15 +23,32 @@ class App extends Component {
       this.setState({ listAll: response });
       console.log(this.state.listAll);
     });
-  };
+  }
+
+  addReminder(reminder) {
+    var url = "http://localhost:8080/api/reminder-new";
+    fetch(url, {
+      headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+      method: "POST",
+      body: JSON.stringify({
+        text: reminder.desc,
+        expired_by: reminder.expired,
+        created_at: reminder.created})
+    }, function(){
+      this.getReminders();
+    });
+  }
 
   render() {
     return (
       <div>
         <Header />
         <Button bsStyle="success" bsSize="large" onClick={() => this.getReminders()}>Display all reminders</Button>
-        <ReminderListTable remindersAll={ this.state.listAll } />
-        <NewReminderForm />
+        <ReminderListTable remindersAll={ this.state.listAll }  />
+        <NewReminderForm addReminder={this.addReminder}/>
         <Footer />
       </div>
     );

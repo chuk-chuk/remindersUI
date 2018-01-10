@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import Index from '../index.css'
+import Index from '../index.css';
 
 class Footer extends React.Component {
   getTodayDate(){
