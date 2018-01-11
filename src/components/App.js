@@ -46,9 +46,11 @@ class App extends Component {
     return (
       <div>
         <Header />
-        <Button bsStyle="success" bsSize="large" onClick={() => this.getReminders()}>Display all reminders</Button>
-        <ReminderListTable remindersAll={ this.state.listAll }  />
-        <NewReminderForm addReminder={this.addReminder}/>
+        <div className='main-body'>
+          <Button bsStyle="success" bsSize="large" onClick={() => this.getReminders()}>Display all reminders</Button>
+          <ReminderListTable remindersAll={ this.state.listAll }  />
+          <NewReminderForm addReminder={this.addReminder}/>
+        </div>
         <Footer />
       </div>
     );

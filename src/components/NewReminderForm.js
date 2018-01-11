@@ -8,9 +8,8 @@ class NewReminderForm extends Component {
     super(props);
 
     this.state = {
-      desc :"",
+      desc: "",
       expired: "",
-      name: ""
     }
   }
 
