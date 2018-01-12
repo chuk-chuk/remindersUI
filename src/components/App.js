@@ -11,6 +11,8 @@ class App extends Component {
     this.addReminder = this.addReminder.bind(this);
     this.state = {
       listAll: [],
+      desc: "",
+      expired: "",
     };
   }
 

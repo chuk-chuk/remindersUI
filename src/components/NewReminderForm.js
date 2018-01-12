@@ -1,23 +1,13 @@
 import React, { Component } from 'react';
-import { render } from 'react-dom';
 import Index from '../index.css';
 import { Button } from 'react-bootstrap';
 
 class NewReminderForm extends Component {
-  constructor(props){
-    super(props);
-
-    this.state = {
-      desc: "",
-      expired: "",
-    }
-  }
-
- createReminder (event) {
+  createReminder (event) {
     event.preventDefault();
     const reminder = {
-      desc: this.state.desc,
-      expired: this.state.expired,
+      desc: this.desc.value,
+      expired: this.expired.value,
       created: new Date().toISOString().slice(0,10),
     }
     this.props.addReminder(reminder);
@@ -28,8 +18,8 @@ class NewReminderForm extends Component {
 render(){
     return(
         <form className='reminder-edit' ref={(input) => this.reminderForm = input} >
-          <textarea onChange={(e) =>  this.setState({ desc: e.target.value})}  type="text" name="desc" placeholder="your description here"></textarea>
-          <input onChange={(e) =>  this.setState({ expired: e.target.value})} type="text" name="expired" placeholder="2018-01-05" />
+          <textarea ref={(input) => this.desc = input} onChange={(e) =>  this.setState({ desc: e.target.desc})}  type="text" name="desc" placeholder="your description here"></textarea>
+          <input ref={(input) => this.expired = input} onChange={(e) =>  this.setState({ expired: e.target.expired})} type="text" name="expired" placeholder="2018-01-05" />
           <Button bsStyle="success" onClick={(e) => this.createReminder(e)}>Add New</Button>
         </form>
     )
