@@ -9,12 +9,14 @@ class EditReminder extends Component {
     super(props);
     this.editReminder = this.editReminder.bind(this);
   }
-  state={
+  state = {
     editedReminder:this.props.reminder
   }
 
-  editReminder(reminder) {
-    console.log(reminder);
+
+  editReminder() {
+    console.log(this.state);
+    console.log(this.props.reminder._id);
     var url = `${URL}${this.props.reminder._id}`;
     fetch(url, {
       headers: {
@@ -22,7 +24,7 @@ class EditReminder extends Component {
       'Content-Type': 'application/json'
     },
       method: "PUT",
-      body: JSON.stringify(reminder)
+      body: JSON.stringify(this.state.editedReminder)
     }, function(){
       this.getReminders();
     });
@@ -31,9 +33,9 @@ class EditReminder extends Component {
 render(){
     return(
         <form>
-          <input onChange={(e) => this.setState({...this.state.editedReminder, text:e.target.value})} defaultValue={this.props.reminder.text} type="text" name="desc" />
-          <input onChange={(e) => this.setState({...this.state.editedReminder, expired_by:e.target.value})} defaultValue={this.props.reminder.expired_by} type="text" name="expired" />
-          <Button onClick={(e) => this.editReminder(this.state.editedReminder)} bsStyle="success">Save</Button>
+          <input onChange={(e) => {var editedReminder = {...this.state.editedReminder}; editedReminder.text = e.target.value; this.setState({editedReminder})}} defaultValue={this.props.reminder.text} type="text" name="desc" />
+          <input onChange={(e) => {var editedReminder = {...this.state.editedReminder}; editedReminder.expired_by = e.target.value; this.setState({editedReminder})}}  defaultValue={this.props.reminder.expired_by} type="text" name="expired" />
+          <Button onClick={(e) => this.editReminder()} bsStyle="success">Save</Button>
         </form>
     )
   }
