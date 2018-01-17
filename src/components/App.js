@@ -9,12 +9,20 @@ class App extends Component {
   constructor(props){
     super(props);
     this.addReminder = this.addReminder.bind(this);
+    this.onButtonClick = this.onButtonClick.bind(this);
     this.state = {
       listAll: [],
       desc: "",
       expired: "",
+      showComponent: false,
     };
   }
+
+  onButtonClick() {
+   this.setState({
+     showComponent: true,
+   });
+ }
 
   getReminders(){
     var url = "http://localhost:8080/api/reminders";
@@ -23,7 +31,6 @@ class App extends Component {
     }).then(response => response.json())
     .then(response => {
       this.setState({ listAll: response });
-      console.log(this.state.listAll);
     });
   }
 
@@ -51,7 +58,8 @@ class App extends Component {
         <div className='main-body'>
           <Button bsStyle="success" bsSize="large" onClick={() => this.getReminders()}>Display all reminders</Button>
           <ReminderListTable remindersAll={ this.state.listAll }  />
-          <NewReminderForm addReminder={this.addReminder}/>
+          <Button bsStyle="success" bsSize="large" onClick={ this.onButtonClick }>Add Reminder</Button>
+          {this.state.showComponent ? <NewReminderForm addReminder={this.addReminder}/> : null }
         </div>
         <Footer />
       </div>

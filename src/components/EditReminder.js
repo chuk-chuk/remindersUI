@@ -10,13 +10,10 @@ class EditReminder extends Component {
     this.editReminder = this.editReminder.bind(this);
   }
   state = {
-    editedReminder:this.props.reminder
+    editedReminder:this.props.reminder,
   }
 
-
   editReminder() {
-    console.log(this.state);
-    console.log(this.props.reminder._id);
     var url = `${URL}${this.props.reminder._id}`;
     fetch(url, {
       headers: {
@@ -32,10 +29,10 @@ class EditReminder extends Component {
 
 render(){
     return(
-        <form>
+        <form className="edit-form">
           <input onChange={(e) => {var editedReminder = {...this.state.editedReminder}; editedReminder.text = e.target.value; this.setState({editedReminder})}} defaultValue={this.props.reminder.text} type="text" name="desc" />
           <input onChange={(e) => {var editedReminder = {...this.state.editedReminder}; editedReminder.expired_by = e.target.value; this.setState({editedReminder})}}  defaultValue={this.props.reminder.expired_by} type="text" name="expired" />
-          <Button onClick={(e) => this.editReminder()} bsStyle="success">Save</Button>
+          <Button onClick={() => { this.editReminder() } } bsStyle="success">Save Edited</Button>
         </form>
     )
   }
