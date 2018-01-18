@@ -48,6 +48,7 @@ class App extends Component {
         created_at: reminder.created})
     }, function(){
       this.getReminders();
+
     });
   }
 
@@ -59,7 +60,7 @@ class App extends Component {
           <Button bsStyle="success" bsSize="large" onClick={() => this.getReminders()}>Display all reminders</Button>
           <ReminderListTable remindersAll={ this.state.listAll }  />
           <Button bsStyle="success" bsSize="large" onClick={ this.onButtonClick }>Add Reminder</Button>
-          {this.state.showComponent ? <NewReminderForm addReminder={this.addReminder}/> : null }
+          {this.state.showComponent ? <NewReminderForm callTheAddReminderMethod={this.addReminder}/> : null }
         </div>
         <Footer />
       </div>

@@ -41,6 +41,11 @@ body {
   padding-bottom: 20px;
 }
 
+/* modal new reminder styles _____________*/
+.modal-dialog {
+  margin-top: 267px;
+}
+
 /* footer _____________*/
 .footer-main{
   position: fixed;
