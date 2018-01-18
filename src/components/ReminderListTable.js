@@ -61,7 +61,7 @@ class ReminderListTable extends Component {
             </Table>
 
             {showEditView && (
-              <EditReminder reminder={currentReminder} status={showEditView}/>
+              <EditReminder reminder={currentReminder}/>
             )}
 
       </div>

@@ -3,6 +3,10 @@ import Index from '../index.css';
 import { Button, Modal } from 'react-bootstrap';
 
 class NewReminderForm extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   createReminder (event) {
     event.preventDefault();
     const reminder = {
@@ -28,6 +32,7 @@ render(){
           </form>
         </Modal.Body>
         <Modal.Footer>
+          <Button onClick={this.props.closePopup} >Close</Button>
           <Button bsStyle="success" onClick={(e) => this.createReminder(e)}>Save Reminder</Button>
         </Modal.Footer>
   		</Modal.Dialog>
