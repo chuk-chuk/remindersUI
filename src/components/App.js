@@ -10,6 +10,8 @@ class App extends Component {
     super(props);
     this.addReminder = this.addReminder.bind(this);
     this.onButtonClick = this.onButtonClick.bind(this);
+    this.getReminders = this.getReminders.bind(this);
+
     this.state = {
       listAll: [],
       desc: "",
@@ -22,15 +24,15 @@ class App extends Component {
    this.setState({
      showComponent: !this.state.showComponent,
    });
- }
+  }
 
-  getReminders(){
+  getReminders() {
     var url = "http://localhost:8080/api/reminders";
     fetch(url, {
       method: "GET"
     }).then(response => response.json())
-    .then(response => {
-      this.setState({ listAll: response });
+    .then(json => {
+      this.setState({ listAll: json });
     });
   }
 
@@ -46,9 +48,8 @@ class App extends Component {
         text: reminder.desc,
         expired_by: reminder.expired,
         created_at: reminder.created})
-    }, function(){
-      this.getReminders();
-
+    }).then(() => {
+      return this.getReminders();
     });
   }
 
@@ -66,7 +67,6 @@ class App extends Component {
       </div>
     );
   }
-
 }
 
 export default App;

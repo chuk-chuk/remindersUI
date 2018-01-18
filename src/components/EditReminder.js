@@ -30,8 +30,7 @@ class EditReminder extends Component {
 
 render(){
     return(
-      <div className="static-modal">
-  		<Modal.Dialog>
+  		<Modal.Dialog className="static-modal">
   			<Modal.Header>
   				<Modal.Title>Edit your new reminder here</Modal.Title>
   			</Modal.Header>
@@ -46,7 +45,6 @@ render(){
           <Button onClick={() => { this.editReminder() } } bsStyle="success">Save Edited</Button>
         </Modal.Footer>
   		</Modal.Dialog>
-	   </div>
     )
   }
 }
