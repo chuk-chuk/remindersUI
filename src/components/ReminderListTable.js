@@ -9,12 +9,19 @@ class ReminderListTable extends Component {
   constructor() {
     super();
     this.deleteRecord = this.deleteRecord.bind(this);
+    this.onButtonClick = this.onButtonClick.bind(this);
   }
 
   state = {
     showEditView: false,
-    currentReminder: {}
+    currentReminder: {},
   }
+
+  onButtonClick() {
+   this.setState({
+     showEditView: !this.state.showEditView,
+   });
+ }
 
   deleteRecord(id) {
     var url = `${URL}${id}`;
@@ -61,7 +68,7 @@ class ReminderListTable extends Component {
             </Table>
 
             {showEditView && (
-              <EditReminder reminder={currentReminder}/>
+              <EditReminder reminder={currentReminder} closePopup={this.onButtonClick}/>
             )}
 
       </div>

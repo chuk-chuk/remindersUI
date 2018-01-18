@@ -60,7 +60,7 @@ class App extends Component {
           <Button bsStyle="success" bsSize="large" onClick={() => this.getReminders()}>Display all reminders</Button>
           <ReminderListTable remindersAll={ this.state.listAll }  />
           <Button bsStyle="success" bsSize="large" onClick={ this.onButtonClick }>Add Reminder</Button>
-          {this.state.showComponent ? <NewReminderForm callTheAddReminderMethod={this.addReminder} closePopup={this.onButtonClick.bind(this)}/> : null }
+          {this.state.showComponent ? <NewReminderForm callTheAddReminderMethod={this.addReminder} closePopup={this.onButtonClick}/> : null }
         </div>
         <Footer />
       </div>

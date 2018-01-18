@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Index from '../index.css';
-import { Button } from 'react-bootstrap';
+import { Button, Modal } from 'react-bootstrap';
 
 const URL = "http://localhost:8080/api/reminders/"
 
@@ -25,15 +25,28 @@ class EditReminder extends Component {
     }, function(){
       this.getReminders();
     });
+    this.props.closePopup();
   }
 
 render(){
     return(
-        <form className="edit-form">
-          <input onChange={(e) => {var editedReminder = {...this.state.editedReminder}; editedReminder.text = e.target.value; this.setState({editedReminder})}} defaultValue={this.props.reminder.text} type="text" name="desc" />
-          <input onChange={(e) => {var editedReminder = {...this.state.editedReminder}; editedReminder.expired_by = e.target.value; this.setState({editedReminder})}}  defaultValue={this.props.reminder.expired_by} type="text" name="expired" />
+      <div className="static-modal">
+  		<Modal.Dialog>
+  			<Modal.Header>
+  				<Modal.Title>Edit your new reminder here</Modal.Title>
+  			</Modal.Header>
+  			<Modal.Body>
+          <form className='reminder-edit'>
+            <input onChange={(e) => {var editedReminder = {...this.state.editedReminder}; editedReminder.text = e.target.value; this.setState({editedReminder})}} defaultValue={this.props.reminder.text} type="text" name="desc" />
+            <input onChange={(e) => {var editedReminder = {...this.state.editedReminder}; editedReminder.expired_by = e.target.value; this.setState({editedReminder})}}  defaultValue={this.props.reminder.expired_by} type="text" name="expired" />
+          </form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={this.props.closePopup} >Close</Button>
           <Button onClick={() => { this.editReminder() } } bsStyle="success">Save Edited</Button>
-        </form>
+        </Modal.Footer>
+  		</Modal.Dialog>
+	   </div>
     )
   }
 }

@@ -16,6 +16,7 @@ class NewReminderForm extends Component {
     }
     this.props.callTheAddReminderMethod(reminder);
     this.reminderForm.reset();
+    this.props.closePopup();
   };
 
 render(){
