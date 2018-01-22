@@ -19,6 +19,10 @@ class App extends Component {
       showComponent: false,
     };
   }
+  componentWillMount(){
+    this.getReminders();
+    this.state.listAll;
+  }
 
   onButtonClick() {
    this.setState({
@@ -33,7 +37,9 @@ class App extends Component {
     }).then(response => response.json())
     .then(json => {
       this.setState({ listAll: json });
+      console.log(this.state.listAll);
     });
+    console.log('called from edit reminder component'+ this.state.listAll);
   }
 
   addReminder(reminder) {
@@ -58,8 +64,8 @@ class App extends Component {
       <div>
         <Header />
         <div className='main-body'>
-          <Button bsStyle="success" bsSize="large" onClick={() => this.getReminders()}>Display all reminders</Button>
-          <ReminderListTable remindersAll={ this.state.listAll }  />
+          {/* <Button bsStyle="success" bsSize="large" onClick={() => this.getReminders()}>Display all reminders</Button> */}
+          <ReminderListTable getReminders={this.getReminders} remindersAll={ this.state.listAll }  />
           <Button bsStyle="success" bsSize="large" onClick={ this.onButtonClick }>Add Reminder</Button>
           {this.state.showComponent ? <NewReminderForm callTheAddReminderMethod={this.addReminder} closePopup={this.onButtonClick}/> : null }
         </div>

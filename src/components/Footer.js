@@ -2,6 +2,22 @@ import React from 'react';
 import Index from '../index.css';
 
 class Footer extends React.Component {
+  constructor(){
+    super()
+    this.state = {date: new Date()};
+  }
+
+  componentDidMount(){
+    this.timerID = setInterval(
+      () => this.tick(),
+      1000
+    );
+  }
+
+  componentWillUnmount() {
+   clearInterval(this.timerID);
+ }
+
   getTodayDate(){
     var month = new Array("January","February","March","April","May","June","July","August","September","October","November","December");
     var weekdays = new Array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday");
@@ -13,10 +29,14 @@ class Footer extends React.Component {
     return full_current_date;
   }
 
+  tick(){
+    this.setState({ date: new Date()});
+  }
+
   render(){
     return(
       <div className='footer-main'>
-        <p>Copyright © Yulia</p><span className='today-date'>{this.getTodayDate()}</span>
+        <p>Copyright &copy; Yulia</p><span className='today-date'>{this.getTodayDate()} {this.state.date.toLocaleTimeString()}</span>
       </div>
     )
   }

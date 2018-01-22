@@ -12,6 +12,7 @@ class ReminderListTable extends Component {
     this.deleteRecord = this.deleteRecord.bind(this);
     this.onButtonClick = this.onButtonClick.bind(this);
     this.onDeleteImageClick = this.onDeleteImageClick.bind(this);
+    this.saveEditedReminder = this.saveEditedReminder.bind(this);
   }
 
   state = {
@@ -32,20 +33,24 @@ class ReminderListTable extends Component {
   });
 }
 
-deleteRecord(id) {
-  var url = `${URL}${id}`;
-  console.log(id);
-  fetch(url, {
-    headers: {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json'
-  },
-    method: "POST",
-  }, function(){
-    this.getReminders();
-  });
-  this.onDeleteImageClick();
-}
+  deleteRecord(id) {
+    var url = `${URL}${id}`;
+    console.log(id);
+    fetch(url, {
+      headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+      method: "POST",
+    }, function(){
+      this.getReminders();
+    });
+    this.onDeleteImageClick();
+  }
+
+  saveEditedReminder(){
+    this.props.getReminders();
+  }
 
   render() {
 
@@ -60,7 +65,7 @@ deleteRecord(id) {
                   <th>Created on</th>
                   <th>To be completed by</th>
                   <th>Edit</th>
-                  <th>Delete</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -71,8 +76,9 @@ deleteRecord(id) {
                       <td>{item.created_at}</td>
                       <td>{item.expired_by}</td>
                       <td><Image onClick={() => this.setState({showEditView: true, currentReminder:item }) } src={editImage} circle responsive/></td>
-                      {this.state.showEditView ? <EditReminder reminder={currentReminder} closePopup={this.onButtonClick}/> : null }
-                      <td><Image onClick={() => this.setState({showDeleteView: true, currentReminder:item }) } src={deleteImage} circle responsive/></td>
+                      {this.state.showEditView ? <EditReminder saveEditedReminder={this.saveEditedReminder} reminder={currentReminder} closePopup={this.onButtonClick}/> : null }
+                      <td><span onClick={() => this.setState({showDeleteView: true, currentReminder:item }) }>&times;</span></td>
+                      {/* <td><Image onClick={() => this.setState({showDeleteView: true, currentReminder:item }) } src={deleteImage} circle responsive/></td> */}
                       {this.state.showDeleteView ? <DeleteConfirmDialog deleteMe={this.deleteRecord} reminder={currentReminder._id} closePopup={this.onDeleteImageClick}/> : null }
                     </tr>
                   )
