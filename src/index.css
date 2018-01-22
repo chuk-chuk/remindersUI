@@ -6,8 +6,6 @@ body {
 }
 .main-body {
   overflow: auto;
-  /* padding-bottom: 100px;
-  padding-top: 55px; */
   padding: 50px 50px 120px 50px;
 }
 .btn {
@@ -29,7 +27,7 @@ body {
 
 /* new reminder form ____________*/
 .reminder-edit textarea, input {
-  width: 50%;
+  width: 100%;
   margin-top: 10px;
   display: block;
 }
@@ -39,9 +37,10 @@ body {
 }
 
 /* table data ____________*/
-.table > tbody > tr > td {
+.table > tbody > tr > td, thead {
   vertical-align: middle;
-  font-size: larger;
+  font-size: 1em;
+  text-transform: uppercase;
 }
 
 .table > tbody > tr:hover {

@@ -12,23 +12,24 @@ class NewReminderForm extends Component {
     const reminder = {
       desc: this.desc.value,
       expired: this.expired.value,
-      created: new Date().toISOString().slice(0,10),
+      created: new Date().toISOString().slice(8,10) +"-"+ new Date().toISOString().slice(5,7) +"-"+ new Date().toISOString().slice(0,4)
     }
     this.props.callTheAddReminderMethod(reminder);
     this.reminderForm.reset();
     this.props.closePopup();
   };
 
+
 render(){
   return(
   	<Modal.Dialog className="static-modal">
   		<Modal.Header>
-  			<Modal.Title>Enter your new reminder here</Modal.Title>
+  			<Modal.Title>You can add a new reminder below</Modal.Title>
   		</Modal.Header>
   		<Modal.Body>
         <form className='reminder-edit' ref={(input) => this.reminderForm = input} >
-          <input ref={(input) => this.desc = input} onChange={(e) =>  this.setState({ desc: e.target.desc})}  type="text" name="desc" placeholder="your description here"/>
-          <input ref={(input) => this.expired = input} onChange={(e) =>  this.setState({ expired: e.target.expired})} type="text" name="expired" placeholder="2018-01-05" />
+          <input ref={(input) => this.desc = input} onChange={(e) =>  this.setState({ desc: e.target.desc})}  type="text" name="desc" placeholder="Type Reminder"/>
+          <input ref={(input) => this.expired = input} onChange={(e) =>  this.setState({ expired: e.target.expired})} type="text" name="expired" placeholder="05-01-2018" />
         </form>
       </Modal.Body>
       <Modal.Footer>

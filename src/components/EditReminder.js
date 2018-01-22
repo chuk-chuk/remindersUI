@@ -42,7 +42,7 @@ render(){
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={this.props.closePopup} >Close</Button>
-          <Button onClick={() => { this.editReminder(); this.props.saveEditedReminder(); } } bsStyle="success">Save Edited</Button>
+          <Button onClick={() => {this.editReminder()} } bsStyle="success">Save Edited</Button>
         </Modal.Footer>
   		</Modal.Dialog>
     )

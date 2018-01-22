@@ -37,9 +37,7 @@ class App extends Component {
     }).then(response => response.json())
     .then(json => {
       this.setState({ listAll: json });
-      console.log(this.state.listAll);
-    });
-    console.log('called from edit reminder component'+ this.state.listAll);
+    })
   }
 
   addReminder(reminder) {

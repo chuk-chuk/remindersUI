@@ -27,11 +27,11 @@ class ReminderListTable extends Component {
    });
  }
 
- onDeleteImageClick() {
-  this.setState({
-    showDeleteView: !this.state.showDeleteView,
-  });
-}
+  onDeleteImageClick() {
+    this.setState({
+      showDeleteView: !this.state.showDeleteView,
+    });
+  }
 
   deleteRecord(id) {
     var url = `${URL}${id}`;
@@ -42,8 +42,8 @@ class ReminderListTable extends Component {
       'Content-Type': 'application/json'
     },
       method: "POST",
-    }, function(){
-      this.getReminders();
+    }).then (()=>{
+      return this.props.getReminders();
     });
     this.onDeleteImageClick();
   }
@@ -62,8 +62,8 @@ class ReminderListTable extends Component {
               <thead>
                 <tr>
                   <th>Description</th>
-                  <th>Created on</th>
-                  <th>To be completed by</th>
+                  <th>Created</th>
+                  <th>Completed by</th>
                   <th>Edit</th>
                   <th></th>
                 </tr>
@@ -78,7 +78,6 @@ class ReminderListTable extends Component {
                       <td><Image onClick={() => this.setState({showEditView: true, currentReminder:item }) } src={editImage} circle responsive/></td>
                       {this.state.showEditView ? <EditReminder saveEditedReminder={this.saveEditedReminder} reminder={currentReminder} closePopup={this.onButtonClick}/> : null }
                       <td><span onClick={() => this.setState({showDeleteView: true, currentReminder:item }) }>&times;</span></td>
-                      {/* <td><Image onClick={() => this.setState({showDeleteView: true, currentReminder:item }) } src={deleteImage} circle responsive/></td> */}
                       {this.state.showDeleteView ? <DeleteConfirmDialog deleteMe={this.deleteRecord} reminder={currentReminder._id} closePopup={this.onDeleteImageClick}/> : null }
                     </tr>
                   )
