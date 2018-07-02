@@ -1,8 +1,12 @@
 body {
-  margin-left: 10px;
-  margin-right: 10px;
+  /* margin-left: 10px;
+  margin-right: 10px; */
   padding: 0;
+  margin: 0;
   font-family: sans-serif;
+}
+h1 {
+  margin: 0;
 }
 .main-body {
   overflow: auto;
@@ -37,6 +41,14 @@ body {
 }
 
 /* table data ____________*/
+.table-wrapper {
+  min-height: .01%;
+  overflow-x: auto;
+  overflow-y: auto;
+  max-height: 500px;
+  min-width: 804px;
+}
+
 .table > tbody > tr > td, thead {
   vertical-align: middle;
   font-size: 1em;
@@ -49,7 +61,11 @@ body {
 }
 
 .table > tbody > tr >td:last-child:hover {
-  font-size: 2em;
+  color: blue;
+}
+/* media break points _____________*/
+@media only screen and (max-width: 900px) {
+
 }
 
 /* edit form styles _____________*/

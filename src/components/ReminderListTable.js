@@ -57,8 +57,8 @@ class ReminderListTable extends Component {
     const { currentReminder } = this.state;
 
     return(
-      <div>
-            <Table responsive striped hover>
+      <div className='table-wrapper'>
+            <Table  responsive striped hover>
               <thead>
                 <tr>
                   <th>Description</th>
